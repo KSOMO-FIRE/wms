@@ -4,10 +4,13 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+import java.util.Date;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
 
 /**
  * <p>
@@ -44,5 +47,15 @@ public class Goods implements Serializable {
     @ApiModelProperty(value = "备注")
     private String remark;
 
+    @ApiModelProperty(value="规格")
+    private String specification;
 
+    @ApiModelProperty(value="图片")
+    private String imageUrl;
+
+    @ApiModelProperty(value="保质期")
+    private Date shelfLife;
+
+    @ApiModelProperty(value="生产日期")
+    private Date productionDate;
 }
