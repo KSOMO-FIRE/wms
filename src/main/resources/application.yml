@@ -14,3 +14,10 @@ spring:
 
  mybatis:
   mapper-locations: classpath:mapper/RecordMapper.xml
+
+#aliyun oss
+alioss:
+ endpoint:
+ accessKeyId:
+ accessKeySecret:
+ bucketName:
