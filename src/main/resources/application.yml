@@ -14,10 +14,9 @@ spring:
 
  mybatis:
   mapper-locations: classpath:mapper/RecordMapper.xml
+ servlet:
+  multipart:
+   max-file-size: 100MB
+   max-request-size: 100MB
 
 #aliyun oss
-alioss:
- endpoint:
- accessKeyId:
- accessKeySecret:
- bucketName:

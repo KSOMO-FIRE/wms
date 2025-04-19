@@ -17,6 +17,10 @@ public class Result {
         return result(400,"失败",0L,null);
     }
 
+    public static Result fail(String err_message){
+        return result(400,err_message,0L,null);
+    }
+
     public static Result success(){
         return result(200,"成功",0L,null);
     }
