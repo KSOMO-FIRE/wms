@@ -139,14 +139,9 @@ public class UserController {
 
     @PostMapping("/listPage")
     public List<User> listPage(@RequestBody QueryPageParam query){
-        System.out.println(query);
-
-        System.out.println("num=" + query.getPageNum());
-        System.out.println("size=" + query.getPageSize());
 
         HashMap param =query.getParam();
         String name =(String) param.get("name");
-        System.out.println("name=" +(String) param.get("name"));
 
         Page<User> page = new Page<>();
         page.setCurrent(query.getPageNum());
@@ -156,7 +151,6 @@ public class UserController {
         lambdaQueryWrapper.like(User::getUsername,name);
 
         IPage result =userService.page(page,lambdaQueryWrapper);
-        System.out.println("total="+result.getTotal());
 
         return result.getRecords();
 
@@ -171,7 +165,6 @@ public class UserController {
         String name =(String) param.get("name");
         String sex =(String) param.get("sex");
         String roleId =(String)param.get("roleId");
-        System.out.println("name=" +(String) param.get("name"));
 
         Page<User> page = new Page<>();
         page.setCurrent(query.getPageNum());
@@ -190,7 +183,6 @@ public class UserController {
 
 
         IPage result =userService.page(page,lambdaQueryWrapper);
-        System.out.println("total="+result.getTotal());
 
         return Result.success(result.getRecords(), result.getTotal());
 

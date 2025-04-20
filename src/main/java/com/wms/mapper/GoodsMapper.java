@@ -23,6 +23,6 @@ public interface GoodsMapper extends BaseMapper<Goods> {
     @Select("SELECT COUNT(*) FROM (SELECT id, name, storage, goodsType, count, remark FROM goods  ${ew.customSqlSegment}) TOTAL")
     int countCC(@Param(Constants.WRAPPER) Wrapper<Goods> wrapper);
 
-    @Select("SELECT id, name, storage, goodsType, count, remark, imageUrl, productionDate, specification, shelfLife FROM goods  ${ew.customSqlSegment}")
+    @Select("SELECT id, name, storage, goodsType, count, remark, imageUrl, productionDate, specification, shelfLife,price FROM goods  ${ew.customSqlSegment}")
     IPage<Goods> pageCC(IPage<Goods> page, @Param(Constants.WRAPPER) Wrapper<Goods> wrapper);
 }
