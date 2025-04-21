@@ -56,11 +56,17 @@ public class Goods implements Serializable {
     private String imageUrl;
 
     @ApiModelProperty(value="保质期")
-    private Integer shelfLife;
+    private Integer shelfDate;
 
     @ApiModelProperty(value="生产日期")
     private Date productionDate;
 
     @ApiModelProperty(value="价格")
     private BigDecimal price;
+
+    @ApiModelProperty(value="临期提醒")
+    private Boolean isNearExpiry;
+
+    @ApiModelProperty(value="库存告警")
+    private Boolean isLowStock;
 }

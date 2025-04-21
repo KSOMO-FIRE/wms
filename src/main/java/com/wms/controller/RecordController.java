@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 /**
@@ -76,17 +77,27 @@ public class RecordController {
     @PostMapping("/save")
     public Result save(@RequestBody Record record){
         Goods goods = goodsService.getById(record.getGoods());
-        int n = record.getCount();
-        //出库
+        int n = record.getAddNum();
+        //出库 record.getAction()=2为出库，1为入库
         if("2".equals(record.getAction())){
              n = -n;
-             record.setCount(n);
         }
 
+        record.setCount(n);
         int num = goods.getCount()+n;
         goods.setCount(num);
+
+        //判断是否库存告急
+        if (num < 10) {
+            goods.setIsLowStock(true);
+        }else if (num>=10){
+            goods.setIsLowStock(false);
+        }
+
         goodsService.updateById(goods);
 
+        //记录操作时间
+        record.setCreatetime(LocalDateTime.now());
         return recordService.save(record)?Result.success():Result.fail();
     }
 }

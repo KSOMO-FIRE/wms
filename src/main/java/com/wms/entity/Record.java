@@ -45,6 +45,9 @@ public class Record implements Serializable {
     @ApiModelProperty(value = "数量")
     private Integer count;
 
+    @TableField("addNum")
+    private Integer addNum;
+
     @ApiModelProperty(value = "操作时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     @TableField(fill = FieldFill.INSERT)

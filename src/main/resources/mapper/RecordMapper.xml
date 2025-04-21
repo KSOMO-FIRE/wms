@@ -5,7 +5,7 @@
     <select id="pageCC" resultType="com.wms.entity.RecordRes">
          select a.*,b.name goodsname,c.name storagename,d.name goodstypename,
         (select u.username from user u where u.id=a.userid)username,
-        (select u.username from user u where u.id=a.admin_id)adminname
+        (select u.username from user u where u.id=a.adminId)adminname
          from record a ,goods b,storage c,goodsType d
         /* where a.goods=b.id
          and b.storage=c.id and b.goodsType=d.id*/
@@ -16,7 +16,7 @@
         <id column="id" property="id" />
         <result column="goods" property="goods" />
         <result column="userId" property="userid" />
-        <result column="admin_id" property="adminId" />
+        <result column="adminId" property="adminId" />
         <result column="count" property="count" />
         <result column="createtime" property="createtime" />
         <result column="remark" property="remark" />

@@ -16,4 +16,6 @@ import com.wms.entity.Storage;
  */
 public interface GoodsService extends IService<Goods> {
     IPage pageCC(IPage<Goods> page, Wrapper wrapper);
+
+    void updateAlerts();
 }
