@@ -2,9 +2,7 @@ package com.wms.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.wms.entity.Goods;
 import com.wms.entity.Record;
-import com.wms.mapper.GoodsMapper;
 import com.wms.mapper.RecordMapper;
 import com.wms.service.RecordService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

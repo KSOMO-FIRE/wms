@@ -5,14 +5,12 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
 
 /**
  * <p>
@@ -59,7 +57,7 @@ public class Goods implements Serializable {
     private Integer shelfDate;
 
     @ApiModelProperty(value="生产日期")
-    private Date productionDate;
+    private LocalDate productionDate;
 
     @ApiModelProperty(value="价格")
     private BigDecimal price;
@@ -69,4 +67,6 @@ public class Goods implements Serializable {
 
     @ApiModelProperty(value="库存告警")
     private Boolean isLowStock;
+
+
 }

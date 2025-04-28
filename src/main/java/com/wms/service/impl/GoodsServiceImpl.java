@@ -30,6 +30,11 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
         return goodsMapper.pageCC(page,wrapper);
     }
 
+    @Override
+    public Goods getProductionDateAndShelfDate(Integer id) {
+        return goodsMapper.getProductionDateAndShelfDate(id);
+    }
+
 
     @Override
     public void updateAlerts() {
@@ -47,13 +52,10 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
 
             // 计算临期提醒
             if (goods.getProductionDate() != null && goods.getShelfDate() != null) {
-                LocalDate expiryDate = goods.getProductionDate().toInstant()
-                        .atZone(java.time.ZoneId.systemDefault())
-                        .toLocalDate()
-                        .plusDays(goods.getShelfDate());
+                LocalDate expiryDate = goods.getProductionDate().plusDays(goods.getShelfDate());
                 LocalDate today = LocalDate.now();
 
-                if (expiryDate.isBefore(today) || expiryDate.minusDays(14).isBefore(today)) {
+                if (expiryDate.isBefore(today) || expiryDate.minusDays(goods.getShelfDate() / 4).isBefore(today)) {
                     goods.setIsNearExpiry(true);
                 } else {
                     goods.setIsNearExpiry(false);

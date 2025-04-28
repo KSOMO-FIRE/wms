@@ -17,5 +17,8 @@ import com.wms.entity.Storage;
 public interface GoodsService extends IService<Goods> {
     IPage pageCC(IPage<Goods> page, Wrapper wrapper);
 
+    //根据id查询生产日期和保质期
+    Goods getProductionDateAndShelfDate(Integer id);
+
     void updateAlerts();
 }
