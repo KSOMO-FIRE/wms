@@ -10,8 +10,11 @@ import com.wms.common.QueryPageParam;
 import com.wms.common.Result;
 import com.wms.entity.Goods;
 import com.wms.entity.Record;
+import com.wms.entity.Sale;
 import com.wms.service.GoodsService;
 import com.wms.service.RecordService;
+import com.wms.service.SaleService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
@@ -39,6 +44,10 @@ public class RecordController {
 
     @Autowired
     private GoodsService goodsService;
+
+    @Autowired
+    private SaleService saleService;
+
     @PostMapping("/listPage")
     public Result listPage(@RequestBody QueryPageParam query){
         HashMap param = query.getParam();
@@ -79,8 +88,30 @@ public class RecordController {
         Goods goods = goodsService.getById(record.getGoods());
         int n = record.getAddNum();
         //出库 record.getAction()=2为出库，1为入库
+        //TODO 只计算了出库的总金额，即出库总额，没有算入库
         if("2".equals(record.getAction())){
              n = -n;
+
+             //查询sale表中是否有今天的销售额记录
+             LambdaQueryWrapper<Sale> queryWrapper = new LambdaQueryWrapper<Sale>();
+             queryWrapper.eq(Sale::getDate, LocalDate.now().atStartOfDay());
+             Sale one = saleService.getOne(queryWrapper);
+
+             //计算营业总额
+             BigDecimal sumSale = goodsService.getById(record.getGoods()).getPrice().multiply(BigDecimal.valueOf(record.getCount()));
+
+             //如果没有则添加一条
+             if (one == null){
+                 Sale sale = new Sale();
+                 sale.setDate(LocalDate.now().atStartOfDay());
+                 sale.setSum(sumSale);
+                 saleService.save(sale);
+             } else {
+                 Sale sale = new Sale();
+                 BeanUtils.copyProperties(one, sale);
+                 sale.setSum(sumSale);
+                 saleService.save(sale);
+             }
         }
 
         record.setCount(n);
@@ -90,7 +121,7 @@ public class RecordController {
         //判断是否库存告急
         if (num < 10) {
             goods.setIsLowStock(true);
-        }else if (num>=10){
+        }else {
             goods.setIsLowStock(false);
         }
 
