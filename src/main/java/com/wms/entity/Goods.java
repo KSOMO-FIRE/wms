@@ -68,5 +68,7 @@ public class Goods implements Serializable {
     @ApiModelProperty(value="库存告警")
     private Boolean isLowStock;
 
+    @ApiModelProperty(value="客户id")
+    private Integer clientId;
 
 }

@@ -31,6 +31,17 @@ public class ClientController {
         return Result.success(results);
     }
 
+    /**
+     * 获取供应商信息
+     */
+    @GetMapping("/list-supplier")
+    public Result getSupplier(){
+        LambdaQueryWrapper<Client> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Client::getType, 0);
+        List<Client> results = clientService.list(wrapper);
+        return Result.success(results);
+    }
+
     //新增
     @PostMapping("/save")
     public Result save(@RequestBody Client client){

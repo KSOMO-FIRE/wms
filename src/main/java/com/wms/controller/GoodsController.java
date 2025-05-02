@@ -60,8 +60,9 @@ public class GoodsController {
         String name = (String)param.get("name");
         String goodstype = (String)param.get("goodstype");
         String storage = (String)param.get("storage");
+        String supplierId = (String)param.get("supplier");
 
-        Page<Goods> page = new Page();
+        Page<ExendGoods> page = new Page();
         page.setCurrent(query.getPageNum());
         page.setSize(query.getPageSize());
 
@@ -75,9 +76,12 @@ public class GoodsController {
         if(StringUtils.isNotBlank(storage) && !"null".equals(storage)){
             lambdaQueryWrapper.eq(Goods::getStorage,storage);
         }
+        if(StringUtils.isNotBlank(supplierId) && !"null".equals(supplierId)){
+            lambdaQueryWrapper.eq(Goods::getClientId,Integer.parseInt(supplierId));
+        }
 
         // 分页查询（返回 IPage<Goods>）
-        IPage<Goods> result = goodsService.pageCC(page, lambdaQueryWrapper);
+        IPage<ExendGoods> result = goodsService.pageCC(page, lambdaQueryWrapper);
 
 // 转换为 List<ExtendGoods>
         List<ExendGoods> extendGoodsList = result.getRecords().stream()
