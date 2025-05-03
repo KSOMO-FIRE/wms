@@ -31,5 +31,8 @@ public interface RecordMapper extends BaseMapper<Record> {
      * @return 所有符合条件的记录
      */
     @Select("SELECT * FROM record WHERE createtime BETWEEN #{start} AND #{end} AND count < 0")
-    List<Record> getSale(LocalDateTime start, LocalDateTime end);
+    List<Record> getOutRecord(LocalDateTime start, LocalDateTime end);
+
+    @Select("SELECT * FROM record WHERE createtime BETWEEN #{start} AND #{end} AND count > 0")
+    List<Record> getInRecord(LocalDateTime start, LocalDateTime end);
 }

@@ -20,9 +20,12 @@ public class Sale implements Serializable {
     @ApiModelProperty(value = "主键id")
     private Integer id;
 
-    @ApiModelProperty(value = "当天营业总额")
-    private BigDecimal sum;
+    @ApiModelProperty(value = "当天出库总额")
+    private BigDecimal outbound;
 
     @ApiModelProperty(value = "时间")
     private LocalDateTime date;
+
+    @ApiModelProperty(value = "当天出库总额")
+    private BigDecimal inbound;
 }
