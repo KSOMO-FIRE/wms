@@ -37,4 +37,9 @@ class WmsApplicationTests {
         System.out.println("✅ 过去90天的营业额已全部统计完毕，请检查数据库！");
     }
 
+    @Test
+    void tests(){
+        System.out.println(LocalDateTime.now());
+    }
+
 }
