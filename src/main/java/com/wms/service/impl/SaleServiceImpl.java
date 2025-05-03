@@ -99,7 +99,7 @@ public class SaleServiceImpl extends ServiceImpl<SaleMapper, Sale> implements Sa
         res.setOutboundTotal(totalOutbound);
 
         int totalInbound = list.stream()
-                .mapToInt(s -> s.getOutbound().intValue())
+                .mapToInt(s -> s.getInbound().intValue())
                 .sum();
         res.setInboundTotal(totalInbound);
 

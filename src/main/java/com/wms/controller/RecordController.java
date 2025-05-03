@@ -107,15 +107,15 @@ public class RecordController {
         if("2".equals(record.getAction())){
              n = -n;
              //计算营业总额
-             BigDecimal outSum = goodsService.getById(record.getGoods()).getPrice().multiply(BigDecimal.valueOf(record.getCount()));
+             BigDecimal outSum = goodsService.getById(record.getGoods()).getPrice().multiply(BigDecimal.valueOf(record.getAddNum()));
              recordSale.setOutbound(outSum);
         } else {
             //计算营业总额
-            BigDecimal InSum = goodsService.getById(record.getGoods()).getPrice().multiply(BigDecimal.valueOf(record.getCount()));
+            BigDecimal InSum = goodsService.getById(record.getGoods()).getPrice().multiply(BigDecimal.valueOf(record.getAddNum()));
             recordSale.setInbound(InSum);
         }
 
-        saleService.save(recordSale);
+        saleService.saveOrUpdate(recordSale);
 
         record.setCount(n);
         int num = goods.getCount()+n;
