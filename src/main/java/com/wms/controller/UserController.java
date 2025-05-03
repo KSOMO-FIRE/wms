@@ -1,18 +1,16 @@
 package com.wms.controller;
 
-import com.baomidou.mybatisplus.core.conditions.AbstractWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.wms.common.QueryPageParam;
-import com.wms.common.Result;
-import com.wms.entity.Menu;
-import com.wms.entity.User;
+import com.wms.pojo.dto.QueryPageParam;
+import com.wms.pojo.vo.Result;
+import com.wms.pojo.entity.Menu;
+import com.wms.pojo.entity.User;
 import com.wms.service.MenuService;
 import com.wms.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.coyote.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

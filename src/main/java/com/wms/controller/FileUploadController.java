@@ -1,6 +1,6 @@
 package com.wms.controller;
 
-import com.wms.common.Result;
+import com.wms.pojo.vo.Result;
 import com.wms.utils.AliOSSUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

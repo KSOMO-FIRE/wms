@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wms.mapper.RecordMapper">
 
-    <select id="pageCC" resultType="com.wms.entity.RecordRes">
+    <select id="pageCC" resultType="com.wms.pojo.entity.RecordRes">
          select a.*,b.name goodsname,c.name storagename,d.name goodstypename,
         (select u.username from user u where u.id=a.userid)username,
         (select u.username from user u where u.id=a.adminId)adminname
@@ -12,7 +12,7 @@
         ${ew.customSqlSegment}
     </select>
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.wms.entity.Record">
+    <resultMap id="BaseResultMap" type="com.wms.pojo.entity.Record">
         <id column="id" property="id" />
         <result column="goods" property="goods" />
         <result column="userId" property="userid" />

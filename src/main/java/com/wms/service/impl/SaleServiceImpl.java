@@ -1,10 +1,9 @@
 package com.wms.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.wms.entity.Goods;
-import com.wms.entity.Record;
-import com.wms.entity.Sale;
+import com.wms.pojo.entity.Goods;
+import com.wms.pojo.entity.Record;
+import com.wms.pojo.entity.Sale;
 import com.wms.mapper.RecordMapper;
 import com.wms.mapper.SaleMapper;
 import com.wms.service.GoodsService;
@@ -55,7 +54,7 @@ public class SaleServiceImpl extends ServiceImpl<SaleMapper, Sale> implements Sa
                 .map(record -> {
                     // 获取商品信息，防止空指针
                     Goods goods = goodsService.getById(record.getGoods());
-                    Integer num = record.getCount();
+                    Integer num = -record.getCount();
                     BigDecimal sum = goods.getPrice().multiply(new BigDecimal(num));
                     return sum;
                 })

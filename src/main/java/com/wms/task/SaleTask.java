@@ -1,18 +1,12 @@
 package com.wms.task;
 
-import com.wms.entity.Record;
-import com.wms.entity.Sale;
-import com.wms.mapper.RecordMapper;
-import com.wms.service.GoodsService;
 import com.wms.service.SaleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * 统计销售额相关的定时任务

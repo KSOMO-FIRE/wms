@@ -1,7 +1,5 @@
 package com.wms;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.wms.entity.Sale;
 import com.wms.service.SaleService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

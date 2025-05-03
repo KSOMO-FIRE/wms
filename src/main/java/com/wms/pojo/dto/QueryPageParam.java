@@ -1,9 +1,8 @@
-package com.wms.common;
+package com.wms.pojo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.util.pattern.PathPattern;
 
 import java.util.HashMap;
 @Data

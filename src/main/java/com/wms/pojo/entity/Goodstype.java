@@ -1,5 +1,6 @@
-package com.wms.entity;
+package com.wms.pojo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
@@ -10,7 +11,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- *
+ * 
  * </p>
  *
  * @author wms
@@ -18,8 +19,9 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@ApiModel(value="Storage对象", description="")
-public class Storage implements Serializable {
+@TableName("goodsType")
+@ApiModel(value="Goodstype对象", description="")
+public class Goodstype implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,7 +29,7 @@ public class Storage implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "仓库名")
+    @ApiModelProperty(value = "分类名")
     private String name;
 
     @ApiModelProperty(value = "备注")

@@ -2,7 +2,7 @@ package com.wms.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.wms.entity.Storage;
+import com.wms.pojo.entity.Storage;
 import com.wms.mapper.StorageMapper;
 import com.wms.service.StorageService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

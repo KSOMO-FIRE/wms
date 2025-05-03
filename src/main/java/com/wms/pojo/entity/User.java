@@ -1,4 +1,4 @@
-package com.wms.entity;
+package com.wms.pojo.entity;
 
 
 import com.baomidou.mybatisplus.annotation.IdType;

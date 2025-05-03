@@ -1,4 +1,4 @@
-package com.wms.common;
+package com.wms.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

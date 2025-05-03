@@ -1,6 +1,6 @@
 package com.wms.service;
 
-import com.wms.entity.Menu;
+import com.wms.pojo.entity.Menu;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

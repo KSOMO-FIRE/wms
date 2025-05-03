@@ -1,6 +1,6 @@
 package com.wms.controller;
 
-import com.wms.entity.User;
+import com.wms.pojo.entity.User;
 import com.wms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

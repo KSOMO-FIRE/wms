@@ -2,13 +2,11 @@ package com.wms.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.wms.common.QueryPageParam;
-import com.wms.common.Result;
-import com.wms.entity.Menu;
-import com.wms.entity.Storage;
+import com.wms.pojo.dto.QueryPageParam;
+import com.wms.pojo.vo.Result;
+import com.wms.pojo.entity.Storage;
 import com.wms.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

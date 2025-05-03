@@ -2,11 +2,9 @@ package com.wms.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.wms.entity.ExendGoods;
-import com.wms.entity.Goods;
-import com.wms.entity.User;
+import com.wms.pojo.entity.ExendGoods;
+import com.wms.pojo.entity.Goods;
 import com.wms.mapper.GoodsMapper;
-import com.wms.mapper.UserMapper;
 import com.wms.service.GoodsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

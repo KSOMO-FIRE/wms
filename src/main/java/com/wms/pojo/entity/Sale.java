@@ -1,4 +1,4 @@
-package com.wms.entity;
+package com.wms.pojo.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

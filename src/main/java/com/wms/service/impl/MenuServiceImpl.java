@@ -1,6 +1,6 @@
 package com.wms.service.impl;
 
-import com.wms.entity.Menu;
+import com.wms.pojo.entity.Menu;
 import com.wms.mapper.MenuMapper;
 import com.wms.service.MenuService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
