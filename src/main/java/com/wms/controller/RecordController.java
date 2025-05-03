@@ -87,32 +87,35 @@ public class RecordController {
     public Result save(@RequestBody Record record){
         Goods goods = goodsService.getById(record.getGoods());
         int n = record.getAddNum();
+
+        //查询sale表中是否有今天的销售额记录
+        LambdaQueryWrapper<Sale> queryWrapper = new LambdaQueryWrapper<Sale>();
+        queryWrapper.eq(Sale::getDate, LocalDate.now().atStartOfDay());
+        Sale one = saleService.getOne(queryWrapper);
+
+        //初始化
+        Sale recordSale = new Sale();
+        if(one != null){
+            BeanUtils.copyProperties(one, recordSale);
+        } else {
+            recordSale.setDate(LocalDate.now().atStartOfDay());
+            recordSale.setOutbound(BigDecimal.ZERO);
+            recordSale.setInbound(BigDecimal.ZERO);
+        }
+
         //出库 record.getAction()=2为出库，1为入库
-        //TODO 只计算了出库的总金额，即出库总额，没有算入库
         if("2".equals(record.getAction())){
              n = -n;
-
-             //查询sale表中是否有今天的销售额记录
-             LambdaQueryWrapper<Sale> queryWrapper = new LambdaQueryWrapper<Sale>();
-             queryWrapper.eq(Sale::getDate, LocalDate.now().atStartOfDay());
-             Sale one = saleService.getOne(queryWrapper);
-
              //计算营业总额
-             BigDecimal sumSale = goodsService.getById(record.getGoods()).getPrice().multiply(BigDecimal.valueOf(record.getCount()));
-
-             //如果没有则添加一条
-             if (one == null){
-                 Sale sale = new Sale();
-                 sale.setDate(LocalDate.now().atStartOfDay());
-                 sale.setSum(sumSale);
-                 saleService.save(sale);
-             } else {
-                 Sale sale = new Sale();
-                 BeanUtils.copyProperties(one, sale);
-                 sale.setSum(sumSale);
-                 saleService.save(sale);
-             }
+             BigDecimal outSum = goodsService.getById(record.getGoods()).getPrice().multiply(BigDecimal.valueOf(record.getCount()));
+             recordSale.setOutbound(outSum);
+        } else {
+            //计算营业总额
+            BigDecimal InSum = goodsService.getById(record.getGoods()).getPrice().multiply(BigDecimal.valueOf(record.getCount()));
+            recordSale.setInbound(InSum);
         }
+
+        saleService.save(recordSale);
 
         record.setCount(n);
         int num = goods.getCount()+n;
